@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Neelix</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--jQuery, Bootstrap-->
+    <script> window.jQuery = window.$ = require('jquery')</script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
+
+    <script src="./js/mysqlhandler.js"></script>
+
+</head>
+
+<body>
+    <div id="modals">
+        <!--Modals-->
+        <script>
+        $(function(){
+            $('#modals').load('./modals.html');
+        });
+        </script>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Anfragen</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-12">
+                        <form name="requestform" class="form-horizontal" action="__ACTION__">
+                            <div class="row form-group">
+                                <div class="col-sm-6">
+                                    <div class="dropdown">
+                                        <select id="req-type-selection" name="__NAME__" class="form-control">
+                                            <!-- REQUEST TYPES SELECTION -->
+                                        </select>
+                                        <textarea id="req-description" readonly wrap="soft" class="form-control" rows="8" style="resize:none">
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <div id="os-selection" class="btn-group margin-bottom col-sm-12 no-padding" data-toggle="buttons">
+                                        <label class="btn btn-sm btn-default active"><input type="radio" name="OperatingSystem" value="Unabhängig">Unabhängig</label>
+                                        <label class="btn btn-sm btn-default"><input type="radio" name="OperatingSystem" value="Windows">Windows</label>
+                                        <label class="btn btn-sm btn-default"><input type="radio" name="OperatingSystem" value="Mac OS">Mac OS</label>
+                                        <label class="btn btn-sm btn-default"><input type="radio" name="OperatingSystem" value="Linux">Linux</label>
+                                        <label class="btn btn-sm btn-default"><input type="radio" name="OperatingSystem" value="Android">Android</label>
+                                        <label class="btn btn-sm btn-default"><input type="radio" name="OperatingSystem" value="Andere">Andere</label>
+                                    </div>
+                                    <div class="col-sm-12 input-group margin-bottom">
+                                        <select id="location_selector" class="form-control" name="Location">
+                                            <option class="form-control-sm" value='RZ'>Rechenzentrum</option>
+                                            <option class="form-control-sm" value='TB4LOCAL'>TB: Lokal</option>
+                                            <option class="form-control-sm" value='TB4TEL/OTRS'>TB: Tel/OTRS</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 form-group">
+                                        <input id="comment" placeholder="Kommentar" type="text" name="__NAME__" class="form-control margin-bottom">
+                                        <input id="datepicker" type="date" name="__NAME__" class="form-control margin-bottom">
+                                        <!--Radio Button-->
+                                        <input id="number" value="1" type="number" min="1" max="20" name="__NAME__" class="form-control margin-bottom">
+                                        <a id="save" href="#" class="pull-right btn btn-sm btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>Speichern</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="history-section" class="panel panel-default">
+                <!-- Request Liste -->
+                <div class="panel-heading">Verlauf - letzten 10 Anfragen</div>
+                <div class="panel-content">
+                    <div class="table-responsiv">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Datum</th>
+                                    <th>Zeit</th>
+                                    <th>Typ</th>
+                                    <th>Betr.-System</th>
+                                    <th>Kommentar</th>
+                                    <th>Ort</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="latest_requests">
+                                <!--INSERT LATEST REQUESTS HERE + DELETE BUTTON-->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="gradient"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Termine
+                    <a href="javascript:newNote()" class="pull-right btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span> Neu</a>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <strong> Datum und Uhrzeit </strong>
+                        <p>Titel</p>
+                        <form> to Delete + Popover
+                            <a href='javascript:deleteNote($eventId)' class='btn btn-danger btn-xs pull-right'><span class='glyphicon glyphicon-trash'></span></a>
+                        </form>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Notizen
+                    <a id="newNote" class="pull-right btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span> Neu</a>
+                </div>
+                <div class="panel-body">
+                    <div id="notes">
+                       <!-- NOTES -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!--<script>require('./js/menu.js')</script>-->
+<script>require('./js/index.js')</script>
+<script src="./js/index.js"></script>
+
+</html>
